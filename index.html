@@ -12,6 +12,11 @@
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         
                 
         #body {
@@ -327,7 +332,7 @@
         }
         .leadership .leader-card p:nth-of-type(1){
             color: green;
-            font-size: 12px;
+            font-size: 16px;
         
         }
         .leadership .leader-card p:nth-of-type(2){
@@ -337,7 +342,7 @@
         
         .leadership .leader-card p{
             margin: 4px 0;        
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .leadership .leader-card p strong{
@@ -347,7 +352,7 @@
             font-weight: 800;
         }
         #committee.section {
-            padding-top: 30px;   /* was 60px */
+            padding-top: 10px;   /* was 60px */
             padding-bottom: 30px;
         }
 
@@ -358,8 +363,52 @@
         #committee .leadership {
             margin-top: 15px;    /* was 40px */
         }
+        #donation {
+            scroll-margin-top: 110px;
+        }
+        .donation-card {
+    cursor: pointer;
+}
 
+.donate-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+}
 
+.donate-box {
+    background: #fff;
+    width: 300px;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+        .donation-card:hover {
+            transform: translateY(-6px);
+        }
+        /* DONATION QR ONLY – does NOT affect facilities popup */
+.donation-qr {
+    width: 140px !important;
+    height: 140px !important;
+    max-width: 140px !important;
+    max-height: 140px !important;
+    object-fit: contain;
+    display: block;
+    margin: 10px auto;
+}
         /* Committee Members Section */
         .committee-section {
             background: #f9f9f9;
@@ -405,8 +454,8 @@
         }
 
         .committee-card h3 {
-            color: #333;
-            font-size: 12px;
+            color: #4f08e7;
+            font-size: 14px;
             margin-bottom: 8px;
         }
 
@@ -418,7 +467,7 @@
 
         .committee-card .phone {
             color: #FF6B35;
-            font-size: 10px;
+            font-size: 14px;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -428,7 +477,7 @@
 
         .committee-card .role {
             color: #1c1fdf;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
         }
 
@@ -476,7 +525,7 @@
         /* Branches */
         /* Reduce space between Branches title and branch photos */
         #branches {
-            padding-top: 30px;      /* reduce top white space */
+            padding-top: 10px;      /* reduce top white space */
             padding-bottom: 30px;
         }
 
@@ -553,6 +602,40 @@
             background: #ffffff;
             color: #FF6B35;
         }
+        /* Donation Section */
+        .donation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .donation-card {
+            background: #f9fff2;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+            transition: transform 0.3s;
+        }
+
+        .donation-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .donation-card h3 {
+            font-size: 16px;
+            color: #FF6B35;
+            margin-bottom: 8px;
+        }
+
+        .donation-card .amount {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1c1fdf;
+        }
+
 
         /* Services */
         .Services {
@@ -846,8 +929,32 @@
             border-top: 1px solid #555;
             color: #ccc;
         }
+        footer {
+            background: #333;
+            padding: 20px;
+        }
 
-       /* Responsive */
+        .footer-bottom {
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-bottom p {
+            margin: 6px 0;
+        }
+
+        .footer-bottom a {
+            color: #FF8C42;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+            /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -870,58 +977,80 @@
         }
         /* ===== FIX HEADER WHITE SPACE ===== */
 
-/* Home */
-#home {
-    scroll-margin-top: 70px;
-}
+            /* Home */
+            #home {
+                scroll-margin-top: 70px;
+            }
 
-/* Services */
-#services {
-    scroll-margin-top: 160px;
-}
+            /* Services */
+            #services {
+                scroll-margin-top: 120px;
+            }
 
-/* Facilities */
-#facilities {
-    scroll-margin-top: 160px;
-}
+            /* Facilities */
+            #facilities {
+                scroll-margin-top: 120px;
+            }
 
-/* Contact */
-#contact {
-    scroll-margin-top: 160px;
-}
+            /* Contact */
+            #contact {
+                scroll-margin-top: 120px;
+            }
 
-/* Reduce top padding for these sections */
-#services.section,
-#facilities.section,
-#contact.section {
-    padding-top: 40px;
-}
+            /* Reduce top padding for these sections */
+            #services.section,
+            #facilities.section,
+            #contact.section {
+                padding-top: 40px;
+            }
 
-.nav-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 0; 
-}
+            .nav-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 0; 
+            }
 
-.logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    align-self: center;     
-    padding: 0;        
-    gap: 15px;
-}
+            .logo {
+                display: flex;
+                flex-direction: column;
+                align-items: center;    
+                align-self: center;     
+                padding: 0;        
+                gap: 15px;
+            }
 
-.logo h1 {
-    color: rgb(63, 5, 237);
-    text-align: center;     
-    font-size: 42px;
-    font-weight: 1000;
-    padding-top: 0;         
-    margin-top: 0;        
-}
+            .logo h1 {
+                color: rgb(63, 5, 237);
+                text-align: center;     
+                font-size: 42px;
+                font-weight: 1000;
+                padding-top: 0;         
+                margin-top: 0;        
+            }
+            /* WhatsApp Floating Button */
+            .whatsapp-float {
+                position: fixed;
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 15px;
+                max-width: 100vw;
+                background-color: #25D366;
+                color: #ffffff;
+                border-radius: 50%;
+                font-size: 30px;
+                z-index: 3000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
 
+            .whatsapp-float:hover {
+                background-color: #20b858;
+            }
                 
         /* =======================
         MOBILE VIEW FINAL FIX
@@ -932,6 +1061,13 @@
             nav {
                 position: sticky;
                 top: 0;
+            }
+            body {
+                overflow-x: hidden;
+            }
+        
+            .whatsapp-float {
+                right: 12px;
             }
 
             .logo {
@@ -999,6 +1135,7 @@
             .branch-card {
                 height: 220px;
             }
+            
 
             /* Services */
             .service-grid {
@@ -1051,15 +1188,25 @@
                 scroll-margin-top: 120px;
             }
         }
-/* Hamburger button */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 26px;
-    color: white;
-    cursor: pointer;
-}
+            /* Hamburger button */
+            .menu-toggle {
+                display: none;
+                background: none;
+                border: none;
+                font-size: 26px;
+                color: white;
+                cursor: pointer;
+            }
+            .donate-modal {
+                    align-items: flex-start !important;
+                    padding-top: 90px;   /* adjust if header is taller */
+                }
+
+                .donate-box {
+                    margin: 0 auto;
+                    max-height: calc(100vh - 120px);
+                    overflow-y: auto;
+                }
 
 
 
@@ -1185,10 +1332,7 @@
         section[id] {
             scroll-margin-top: 160px;  /* matches full header height */
         }
-
-
        
-
     </style>
 </head>
 <body>
@@ -1211,6 +1355,7 @@
             <li><a href="#committee">Committee</a></li>
             <li><a href="#branches">Branches</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#donation">Donation</a></li>
             <li><a href="#facilities">Facilities</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1348,9 +1493,9 @@
             <div class="committee-grid">
                 <div class="committee-card">
                     <div class="committee-avatar">
-                        <img src=".\Images\mhp.jpeg" alt="Sri. Mamidipaka Hari Prasad">
+                        <img src=".\Images\ch suresh.jpeg" alt="Sri. Mamidipaka Hari Prasad">
                     </div>
-                    <h3>Sri. CH. SURESH BABU</h3>
+                    <h3>Sri. CH. Suresh Babu</h3>
                     <p class="location">Ongole</p>
                     <p class="phone"><i class="fas fa-phone"></i> 7337415757</p>
                     <p class="role">Organizing Secretary</p>
@@ -1368,17 +1513,17 @@
 
                 <div class="committee-card">
                     <div class="committee-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Sri. Ramesh Kumar">
+                        <img src=".\Images\mhp.jpeg" alt="Sri. Ramesh Kumar">
                     </div>
-                    <h3>Sri. Kankicharla Venkateswarallu</h3>
-                    <p class="location">Ponnuru</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9440264647</p>
+                    <h3>Sri. Mmamidipaka Hari Prasad</h3>
+                    <p class="location">Parchuru</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9440915646</p>
                     <p class="role">Vice President</p>
                 </div>
 
                 <div class="committee-card">
                     <div class="committee-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Sri. Suresh Babu">
+                        <img src=".\Images\mhp.jpeg" alt="Sri. Suresh Babu">
                     </div>
                     <h3>Sri. Bysani Venkata SeshaPhani</h3>
                     <p class="location">Tadipatri</p>
@@ -1388,7 +1533,7 @@
 
                 <div class="committee-card">
                     <div class="committee-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Sri. Narayana Swamy">
+                        <img src=".\Images\mhp.jpeg" alt="Sri. Narayana Swamy">
                     </div>
                     <h3>Sri. Penugonda Venkata Narasimha Rao</h3>
                     <p class="location">Markapuram</p>
@@ -1398,7 +1543,7 @@
 
                 <div class="committee-card">
                     <div class="committee-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Sri. Prasad Reddy">
+                        <img src=".\Images\tanoj.jpeg" alt="Sri. Prasad Reddy">
                     </div>
                     <h3>Sri. Sidda Suresh Kumar</h3>
                     <p class="location">Ongole</p>
@@ -1408,7 +1553,7 @@
 
                 <div class="committee-card">
                     <div class="committee-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="Sri. Venkateswara Rao">
+                        <img src=".\Images\mhp.jpeg" alt="Sri. Venkateswara Rao">
                     </div>
                     <h3>Sri. koparthi Venkata Narayana Murthy</h3>
                     <p class="location">Akuveedu</p>
@@ -1449,10 +1594,10 @@
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Sri. Mamidipaka Hari Prasad">
                     </div>
-                    <h3>Sri. CH. SURESH BABU</h3>
-                    <p class="location">Ongole</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 7337415757</p>
-                    <p class="role">Organizing Secretary</p>
+                    <h3>Sri. Kankicharla Venkateswarallu</h3>
+                    <p class="location">Ponnuru</p>
+                    <p class="phone"><i class="fas fa-phone"></i>9440264647</p>
+                    <p class="role">Vice President</p>
                 </div>
 
                 <div class="committee-card">
@@ -1469,9 +1614,9 @@
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Sri. Ramesh Kumar">
                     </div>
-                    <h3>Sri. Kankicharla Venkateswarallu</h3>
-                    <p class="location">Ponnuru</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9440264647</p>
+                    <h3>Sri. Atyam Surya Narayana Murthy </h3>
+                    <p class="location">Kakinada</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9849377315</p>
                     <p class="role">Vice President</p>
                 </div>
 
@@ -1479,9 +1624,9 @@
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Sri. Suresh Babu">
                     </div>
-                    <h3>Sri. Bysani Venkata SeshaPhani</h3>
-                    <p class="location">Tadipatri</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9848126259</p>
+                    <h3>Sri. Thatha Kumara Swamy</h3>
+                    <p class="location">Chirala</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9290130126</p>
                     <p class="role">Vice President</p>
                 </div>
 
@@ -1489,9 +1634,9 @@
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Sri. Narayana Swamy">
                     </div>
-                    <h3>Sri. Penugonda Venkata Narasimha Rao</h3>
-                    <p class="location">Markapuram</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9246464501</p>
+                    <h3>Sri. Padurthi Venkata Koteswara Rao</h3>
+                    <p class="location">Ongole</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9849964709</p>
                     <p class="role">Vice President</p>
                 </div>
 
@@ -1499,88 +1644,143 @@
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Sri. Prasad Reddy">
                     </div>
-                    <h3>Sri. Sidda Suresh Kumar</h3>
-                    <p class="location">Ongole</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9949115749</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. Singam Setty Sri Krishna</h3>
+                    <p class="location">Vijayawada</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9441306822</p>
+                    <p class="role">Joint Secretary</p>
                 </div>
 
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/88.jpg" alt="Sri. Venkateswara Rao">
                     </div>
-                    <h3>Sri. koparthi Venkata Narayana Murthy</h3>
+                    <h3>Sri. Sannidhi Rama Venkateswara Rao</h3>
                     <p class="location">Akuveedu</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9885078064</p>
-                    <p class="role">Vice President</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9849872969</p>
+                    <p class="role">Joint Secretary</p>
                 </div>
 
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Sri. Subba Rao">
                     </div>
-                    <h3>Sri. Mattupalli Ravi Kumar</h3>
-                    <p class="location">Guntur</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9441335332</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. Kanamarlapudi Samba Siva Rao  </h3>
+                    <p class="location">Ongole</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9704406060</p>
+                    <p class="role">Joint Secretary</p>
                 </div>
 
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/23.jpg" alt="Sri. Murali Krishna">
                     </div>
-                    <h3>Sri. Vemula Lakshman Rao</h3>
-                    <p class="location">Khammam</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9394621974</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. Gurram Singaiah</h3>
+                    <p class="location">Kandhukuru</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9849112440</p>
+                    <p class="role">Joint Secretary</p>
                 </div>
 
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Sri. Srinivasa Reddy">
                     </div>
-                    <h3>Sri. Gudivada Appalaraju</h3>
-                    <p class="location">Peravalli</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9392106340</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. Dudhi Prabhakar</h3>
+                    <p class="location">Nizamabad </p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9963112522</p>
+                    <p class="role">Joint Secretary</p>
                 </div>
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/23.jpg" alt="Sri. Murali Krishna">
                     </div>
-                    <h3>Sri. Vemula Lakshman Rao</h3>
-                    <p class="location">Khammam</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9394621974</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. Pulavarthy Ravi Babu</h3>
+                    <p class="location">New Delhi</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9818555447</p
+                    <p class="role">Joint Secretary</p>
                 </div>
 
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Sri. Srinivasa Reddy">
                     </div>
-                    <h3>Sri. Gudivada Appalaraju</h3>
-                    <p class="location">Peravalli</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9392106340</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. Grandhi Lakshmi Ragavamma</h3>
+                    <p class="location">Visakapatnam</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 8790048464</p>
+                    <p class="role">Joint Secretary</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-avatar">
+                        <img src=".\Images\jk.jpg" alt="P.V.Janardhan Kumar">
+                    </div>
+                    <h3>Sri. P.V.Janardhan Kumar</h3>
+                    <p class="location">Ongole</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9133113108</p>
+                    <p class="role">Trustee Director</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-avatar">
+                        <img src=".\Images\tanoj.jpeg" alt="Sri. Srinivasa Reddy">
+                    </div>
+                    <h3>Sri. Chebrolu Tanoj Srinivas Kumar</h3>
+                    <p class="location">Ongole</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 8056117694</p>
+                    <p class="role">Trustee Director</p>
                 </div>
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Sri. Srinivasa Reddy">
                     </div>
-                    <h3>Sri. Gudivada Appalaraju</h3>
-                    <p class="location">Peravalli</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9392106340</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. N.V.K.NAGA CHANDRA SURESH</h3>
+                    <p class="location">Tanuku</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9966402233</p>
+                    <p class="role">Trustee Director</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-avatar">
+                        <img src=".\Images\tanoj.jpeg" alt="Sri. Srinivasa Reddy">
+                    </div>
+                    <h3>Sri. Pulavarthy Lakshman Swamy</h3>
+                    <p class="location">Akiveedu</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9394355556</p>
+                    <p class="role">Trustee Director</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="NERELLA RAGHU NANDAN">
+                    </div>
+                    <h3>Sri. Nerella Raghu Nandan</h3>
+                    <p class="location">Ongole</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9573222455</p>
+                    <p class="role">Trustee Director</p>
+                </div>
+                <div class="committee-card">
+                    <div class="committee-avatar">
+                        <img src=".\Images\tanoj.jpeg" alt="Sri. Srinivasa Reddy">
+                    </div>
+                    <h3>Sri. Batchu Lakshmi Prasad</h3>
+                    <p class="location">Chennai</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9642653389</p>
+                    <p class="role">Trustee Director</p>
                 </div>
                 <div class="committee-card">
                     <div class="committee-avatar">
                         <img src="https://randomuser.me/api/portraits/men/34.jpg" alt="Sri. Srinivasa Reddy">
                     </div>
-                    <h3>Sri. Gudivada Appalaraju</h3>
-                    <p class="location">Peravalli</p>
-                    <p class="phone"><i class="fas fa-phone"></i> 9392106340</p>
-                    <p class="role">Vice President</p>
+                    <h3>Sri. Karumuri Appala Raju</h3>
+                    <p class="location">Tanuku</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 9246666736</p>
+                    <p class="role">Trustee Director</p>
                 </div>
+                <div class="committee-card">
+                    <div class="committee-avatar">
+                        <img src=".\Images\tanoj.jpeg" alt="Sri. Srinivasa Reddy">
+                    </div>
+                    <h3>Sri. Vankayala Ranganayakulu</h3>
+                    <p class="location">Thirupathi</p>
+                    <p class="phone"><i class="fas fa-phone"></i> 7339751003</p>
+                    <p class="role">Trustee Director</p>
+                </div>
+                
             </div>
         </div>
     </section>
@@ -1626,7 +1826,7 @@
                         <h3>Siva Ganga</h3>
                         <p>Arunachalam</p>
                         <a 
-                        href="https://www.google.com/maps?q=Thiruvannamalai,Tamil+Nadu"
+                        href="https://maps.app.goo.gl/R8syPMcjRtpUoBHx6"
                         target="_blank"
                         class="map-link">
                         <i class="fas fa-map-marker-alt"></i> View Location
@@ -1669,6 +1869,90 @@
             </div>
         </div>
     </section>
+    <!-- Donation Section -->
+<section id="donation" class="section">
+    <div class="section-title">
+        <h2>Donations</h2>
+        <p>Your support helps us serve devotees</p>
+    </div>
+
+    <div class="container">
+
+    <div class="donation-grid">
+
+    <div class="donation-card popular"
+     onclick="openDonate(
+        'General Donner',
+        '₹ 5,116/-',
+        'Those who donate Rs. 5,116/- will be considered regular donors. For them, a free meal service will be provided on one day of their choice during the year, and locker facilities will be provided for two days..')">
+    <h3>General Donner</h3>
+    <p class="amount">₹ 5,116/-</p>
+</div>
+
+    <div class="donation-card"
+         onclick="openDonate(
+           'Locker Donor',
+           '₹ 10,116/-',
+           'Those who donate ₹ 10,116/- will be considered donors of a bed with a locker. Annadanam (free meal service) will be provided on two days of their choice during the year, and they will be provided accommodation with a bed and locker for 5 days..'
+         )">
+        <h3>Locker Donor</h3>
+        <p class="amount">₹ 10,116/-</p>
+    </div>
+
+    <div class="donation-card "
+         onclick="openDonate(
+           'Annadatha',
+           '₹ 25,116/-',
+           'Those who donate Rs. 25,116/- will be considered benefactors. Annadanam (free meal service) will be provided on 5 days of their choice during the year, and room accommodation will be provided for 2 days. (Maintenance charges will be collected)..'
+         )">
+        <h3>Annadatha</h3>
+        <p class="amount">₹ 25,116/-</p>
+    </div>
+
+    <div class="donation-card "
+         onclick="openDonate(
+           'Nitya Annadatha',
+           '₹ 50,116/-',
+           'Those who donate ₹50,116/- will be considered permanent benefactors of the daily food service. Every day, food will be served in their name, and a photograph of their family will be displayed on the TV in the food hall. Every year, on the day of the Karthika Deepotsavam festival, a special puja will be performed in their name, and prasadam (blessed food) will be sent to them. They will also be provided with room accommodation for four days in a year (maintenance charges will be applicable)..'
+         )">
+        <h3>Nitya Annadatha</h3>
+        <p class="amount">₹ 50,116/-</p>
+    </div>
+
+    <div class="donation-card "
+         onclick="openDonate(
+           'Vamsapaaramparya Nityannadatha',
+           '₹ 1,00,116/-',
+           'Those who donate ₹ 1,00,116/- will be considered hereditary daily food donors. They will be provided room accommodation for 7 days in a year (maintenance charges will be collected). Priority will be given in room booking. Every day, food will be served in their name, and a photo of their family members will be displayed on the TV in the food hall. Every year, on the day of the Karthika Deepotsavam festival, a puja will be performed in their name, and the prasadam (offering) will be sent to them..'
+         )">
+        <h3>Vamsapaaramparya Nityannadatha</h3>
+        <p class="amount">₹ 1,00,116/-</p>
+    </div>
+
+    <div class="donation-card "
+         onclick="openDonate(
+           'Vamsapaaramparya Rajaposhakulu',
+           '₹.2,50,116/-',
+           'Those who donate ₹.2,50,116/- will be considered hereditary royal patrons, and they will be provided with room accommodation for 15 days a year (maintenance charges will be collected). Priority will be given in room bookings. Every day, food will be distributed in their name, and their family photo will be shown on TV, and their names will be read out. Every year, on the day of the Karthika Deepotsavam festival, a special puja will be performed in their name, and the prasadam (offering) will be sent to them..'
+         )">
+        <h3>Vamsapaaramparya Rajaposhakulu</h3>
+        <p class="amount">₹.2,50,116/-</p>
+    </div>
+
+    <div class="donation-card"
+         onclick="openDonate(
+           'Vamsapaaramparya Sasvatha Room Datha',
+           '₹ 5,50,116/-',
+           'Those who donate ₹ 5,50,116/- will be considered hereditary permanent room donors. They will be provided room accommodation for 30 days in a year (maintenance charges will be collected). They will be given first priority in room booking. Every day, food will be distributed in their name, and their family photo will be displayed on TV, and their names will be read out. Every year, on the day of the Karthika Deepotsavam festival, a puja will be performed in their name, and prasadam will be sent to them..'
+         )">
+        <h3>Vamsapaaramparya Sasvatha Room Datha</h3>
+        <p class="amount">₹ 5,50,116/-</p>
+    </div>
+
+</div>
+
+</section>
+
 
         <!-- Facilities Section -->
             <section id="facilities" class="section facilities-title">
@@ -1807,7 +2091,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Administrative Office</h4>
-                            <p>2nd Floor,Gupthas Mid Town,Guntur Road, Ongole<br>Andhra Pradesh - 523001, India</p>
+                            <p>Shop No.6,2nd Floor,Gupthas Mid Town,Guntur Road, Ongole<br>Andhra Pradesh - 523001, India</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1821,11 +2105,12 @@
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p>vasavisivaganga@gmail.com<br>spencerongole@gmail.com</p>
+                            <p>vasavisivaganganityannatrust@gmail.com</p>
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100081009190970" target="_blank">
+                        <i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
@@ -1833,24 +2118,28 @@
                 </div>
                 <div class="contact-form">
                     <h3 style="color: #FF6B35; margin-bottom: 30px;">Send us a Message</h3>
-                    <form>
+                    <form action="https://formsubmit.co/spencerongole@gmail.com" method="POST" />
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="Your Email" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
                             <label>Phone</label>
-                            <input type="tel" placeholder="Your Phone">
+                            <input type="tel" name="phone" placeholder="Your Phone">
                         </div>
                         <div class="form-group">
                             <label>Message</label>
-                            <textarea rows="5" placeholder="Your Message" required></textarea>
+                            <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="thankyou.html">
+
                     </form>
                 </div>
             </div>
@@ -1868,12 +2157,6 @@ function closeFacilityPopup(){
     document.getElementById("facilityPopup").style.display = "none";
 }
 </script>
-
-
-    <!-- Footer -->
-     <div>
-    <p>vasavisivaganga@gmail.com</p><p>spencerongole@gmail.com</p>
-    </div>
     <script>
         const menuToggle = document.getElementById("menuToggle");
         const navMenu = document.getElementById("navMenu");
@@ -1891,6 +2174,72 @@ function closeFacilityPopup(){
             });
         });
     </script>
+    <footer>
+
+    <div class="footer-bottom">
+
+        <p>
+            © <span id="year"></span> Sri Vasavi Siva Ganga Nityanna Trust. All Rights Reserved.
+        </p>
+
+        <p>
+            Designed by <strong>Your Name / Company</strong>
+        </p>
+
+        <p>
+            📧 <a href="mailto:vasavisivaganga@gmail.com">vasavisivaganga@gmail.com</a>
+            &nbsp; | &nbsp;
+            📞 <a href="tel:+919642653389">+91 96426 53389</a>
+        </p>
+
+        <p>
+            <a href="privacy.html">Privacy Policy</a>
+            &nbsp; | &nbsp;
+            <a href="terms.html">Terms & Conditions</a>
+        </p>
+
+    </div>
+
+</footer>
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+<!-- WhatsApp Chat Button -->
+<a href="https://wa.me/919642653389" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+function closeDonate() {
+    document.getElementById("donateModal").style.display = "none";
+}
+</script>
+<div class="donate-modal" id="donateModal">
+    <div class="donate-box">
+        <span class="close" onclick="closeDonate()">×</span>
+
+        <h3 id="donateTitle"></h3>
+        <p id="donateAmount"></p>
+        <p id="donateDetails"></p>
+
+        <img src="D:\Janardhan\SVSGNT\svsgnt\Images\upi-qr.jpeg" alt="UPI QR" class="donation-qr">
+        <p><b>UPI ID:</b> 9652613389@okbizaxis</p>
+    </div>
+</div>
+
+<script>
+function openDonate(title, amount, details) {
+    document.getElementById("donateTitle").innerText = title;
+    document.getElementById("donateAmount").innerText = amount;
+    document.getElementById("donateDetails").innerText = details;
+    document.getElementById("donateModal").style.display = "block";
+}
+
+function closeDonate() {
+    document.getElementById("donateModal").style.display = "none";
+}
+</script>
+
+
 
 </body>
 </html>
