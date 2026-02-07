@@ -190,6 +190,16 @@
             margin: auto;
             padding: 0 20px;
         }
+        .slide video {
+            max-width: 60%;
+            max-height: 60%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            margin: auto;
+            padding: 0 20px;
+        }
+
 
         /* Breaking News */
         .breaking-news {
@@ -1029,7 +1039,7 @@
                 width: 55px;
                 height: 55px;
                 bottom: 20px;
-                right: 20px;
+                right: 40px;
                 background-color: #25D366;
                 color: #ffffff;
                 border-radius: 50%;
@@ -1194,8 +1204,12 @@
                     max-height: calc(100vh - 120px);
                     overflow-y: auto;
                 }
-
-
+                @media (max-width: 768px) {
+                .slide video {
+                    max-width: 100%;
+                    max-height: 200px;
+                }
+}
 
 /* Mobile styles */
 @media (max-width: 768px) {
@@ -1319,7 +1333,41 @@
         section[id] {
             scroll-margin-top: 160px;  /* matches full header height */
         }
-       
+        /* Audio Player */
+        .audio-player {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .audio-player h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--hover-color);
+        }
+          
     </style>
 </head>
 <body>
@@ -1362,7 +1410,6 @@
 
 </nav>
 
-
     <!-- Hero Slider -->
     <div id="home" class="hero-slider">
         <div class="slide active">
@@ -1374,6 +1421,15 @@
         <div class="slide">
             <img src=".\Images\tnm.jpg?w=400" alt="Accommodation">
         </div>
+        <div class="slide">
+            <img src=".\Images\doner.jpeg?w=400" alt="Doner">
+        </div>
+        <div class="slide">
+    <video controls playsinline>
+        <source src="./Images/jab.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
     </div>
  
     <!-- Breaking News -->
@@ -1391,17 +1447,54 @@
         </div>
     </div>
     <script>
-        // Hero Slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+let slideInterval = null;
 
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        
-        setInterval(nextSlide, 4000);
+function startSlider() {
+    slideInterval = setInterval(nextSlide, 4000);
+}
+
+function stopSlider() {
+    clearInterval(slideInterval);
+}
+
+function nextSlide() {
+    const current = slides[currentSlide];
+    const video = current.querySelector('video');
+
+    // Remove active from current slide
+    current.classList.remove('active');
+
+    // If current slide has video → pause & reset it
+    if (video) {
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    // Move to next slide
+    currentSlide = (currentSlide + 1) % slides.length;
+    const next = slides[currentSlide];
+    next.classList.add('active');
+
+    const nextVideo = next.querySelector('video');
+
+    // If next slide is video → wait until it ends
+    if (nextVideo) {
+        stopSlider();
+        nextVideo.play();
+
+        nextVideo.onended = () => {
+            startSlider();
+            nextSlide();
+        };
+    }
+}
+
+// Start slider
+startSlider();
+</script>
+
     </script>
 
     <!-- About Section -->
@@ -1433,7 +1526,7 @@
             <div class="leadership">
                 <div class="leader-card">
                     <div class="leader-avatar">
-                        <img src=".\Images\upendra.jpeg" alt="Sri. Kothamasu Ratnakar Rao">
+                        <img src=".\Images\rat.jpeg" alt="Sri. Kothamasu Ratnakar Rao">
                     </div>
                     <h3>Sri. Kothamasu Ratnakar Rao</h3>
                     <p>Appapuram</p>
@@ -1442,7 +1535,7 @@
                 </div>
                 <div class="leader-card">
                     <div class="leader-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Sri. Kotla Someswara Rao">
+                        <img src=".\Images\some.jpeg" alt="Sri. Kotla Someswara Rao">
                     </div>
                     <h3>Sri. Kotla Someswara Rao</h3>
                     <p>Tanuku</p>
@@ -1619,7 +1712,7 @@
 
                 <div class="committee-card">
                     <div class="committee-avatar">
-                        <img src="https://randomuser.me/api/portraits/men/66.jpg" alt="Sri. Narayana Swamy">
+                        <img src=".\Images\koti.jpeg" alt="Sri. Padurthi Venkata Koteswara Rao">
                     </div>
                     <h3>Sri. Padurthi Venkata Koteswara Rao</h3>
                     <p class="location">Ongole</p>
@@ -1774,51 +1867,76 @@
 
     <!-- Branches Section -->
         <section id="branches" class="section">
-        <div class="section-title">
-            <h2>Our Branches</h2>
-            <p>Serving Devotees Across Sacred Places</p>
+    <div class="section-title">
+        <h2>Our Branches</h2>
+        <p>Vasavi Satrams at Sacred Pilgrim Places</p>
+    </div>
+
+    <div class="branches-grid">
+
+        <!-- Branch 1 -->
+        <div class="branch-card">
+            <img src=".\Images\kashi.png?w=600" class="branch-img" alt="Kashi Branch">
+
+            <div class="branch-overlay">
+                <h3>Kashi – Varanasi</h3>
+                <p>
+                    Sri Vasavi Satram,<br>
+                    Near Kashi Vishwanath Temple,<br>
+                    Varanasi, Uttar Pradesh – 221001
+                </p>
+
+                <a class="map-link"
+                   href="https://www.google.com/maps?q=Kashi+Vishwanath+Temple"
+                   target="_blank">
+                    <i class="fas fa-map-marker-alt"></i> View on Map
+                </a>
+            </div>
         </div>
-        ...
-    </section>
-            <div class="branches-grid">
-                <div class="branch-card">
-                    <img src=".\Images\kashi.png?w=600" alt="Varanasi" class="branch-img">
-                    <div class="branch-overlay">
-                        <h3>Siva Ganga</h3>
-                        <p>VARANASI</p>
-                        <a 
-                        href="https://www.google.com/maps?q=Varanasi,Uttar+Pradesh"
-                        target="_blank"
-                        class="map-link">
-                        <i class="fas fa-map-marker-alt"></i> View Location
-                        </a>
-                    </div>
-                </div>
-                <div class="branch-card">
-                    <img src=".\Images\Tpty.jpg?w=600" alt="Tirupati" class="branch-img">
-                    <div class="branch-overlay">
-                        <h3>Siva Ganga</h3>
-                        <p>TIRUPATI</p>
-                        <a 
-                        href="https://www.google.com/maps?q=Tirupati,Andhra+Pradesh"
-                        target="_blank"
-                        class="map-link">
-                        <i class="fas fa-map-marker-alt"></i> View Location
-                        </a>
-                    </div>
-                </div>
-                <div class="branch-card">
-                    <img src=".\Images\tnm.jpg?w=600" alt="Thiruvannamalai" class="branch-img">
-                    <div class="branch-overlay">
-                        <h3>Siva Ganga</h3>
-                        <p>Arunachalam</p>
-                        <a 
-                        href="https://maps.app.goo.gl/R8syPMcjRtpUoBHx6"
-                        target="_blank"
-                        class="map-link">
-                        <i class="fas fa-map-marker-alt"></i> View Location
-                        </a>
-                    </div>
+
+        <!-- Branch 2 -->
+        <div class="branch-card">
+            <img src=".\Images\Tpty.jpg?w=600" class="branch-img" alt="Tirumala Branch">
+
+            <div class="branch-overlay">
+                <h3>Tirumala</h3>
+                <p>
+                    Sri Vasavi Satram,<br>
+                    Near Alipiri Footpath,<br>
+                    Tirupati, Andhra Pradesh – 517504
+                </p>
+
+                <a class="map-link"
+                   href="https://www.google.com/maps?q=Tirumala+Tirupati"
+                   target="_blank">
+                    <i class="fas fa-map-marker-alt"></i> View Location
+                </a>
+            </div>
+        </div>
+
+        <!-- Branch 3 -->
+        <div class="branch-card">
+            <img src=".\Images\tnm.jpg?w=600" class="branch-img" alt="Arunachalam Branch">
+
+            <div class="branch-overlay">
+                <h3>Arunachalam</h3>
+                <p>
+                    Sri Vasavi Satram,<br>
+                    Girivalam Road,<br>
+                    Tiruvannamalai, Tamil Nadu – 606601
+                </p>
+
+                <a class="map-link"
+                   href="https://maps.app.goo.gl/R8syPMcjRtpUoBHx6"
+                   target="_blank">
+                    <i class="fas fa-map-marker-alt"></i> View Location on Map
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
                 </div>
             </div>
         </div>
@@ -1954,7 +2072,7 @@
             <div class="facility-item" onclick="openFacilityPopup(
                 'AC & Non-AC Rooms',
                 'Comfortable AC and Non-AC rooms available for devotees.',
-                'D:/Janardhan/SVSGNT/Images/ac-room.jpg'
+                './Images/ac-room.jpg'
             )">
                 <div class="facility-icon"><i class="fas fa-snowflake"></i></div>
                 <div>
@@ -1967,7 +2085,7 @@
             <div class="facility-item" onclick="openFacilityPopup(
                 'Entertainment',
                 'Color Television in every room with cable connection.',
-                'D:/Janardhan/SVSGNT/Images/tv-room.jpg'
+                './Images/tv-room.jpg'
             )">
                 <div class="facility-icon"><i class="fas fa-tv"></i></div>
                 <div>
@@ -1980,7 +2098,7 @@
             <div class="facility-item" onclick="openFacilityPopup(
                 '24 Hours Hot Water',
                 '24×7 hot water facility in all rooms.',
-                'D:/Janardhan/SVSGNT/Images/water-heater.jpg'
+                './Images/water-heater.jpg'
             )">
                 <div class="facility-icon"><i class="fas fa-hot-tub"></i></div>
                 <div>
@@ -1993,7 +2111,7 @@
             <div class="facility-item" onclick="openFacilityPopup(
                 'Mineral Water',
                 'Clean and safe mineral drinking water on every floor.',
-                'D:/Janardhan/SVSGNT/Images/mineral-water.jpg'
+                './Images/mineral-water.jpg'
             )">
                 <div class="facility-icon"><i class="fas fa-tint"></i></div>
                 <div>
@@ -2006,7 +2124,7 @@
             <div class="facility-item" onclick="openFacilityPopup(
                 'Lift Facility',
                 '24×7 lift facility for senior citizens and luggage.',
-                'D:/Janardhan/SVSGNT/Images/lift.jpg'
+                './Images/lift.jpg'
             )">
                 <div class="facility-icon"><i class="fas fa-elevator"></i></div>
                 <div>
@@ -2019,7 +2137,7 @@
             <div class="facility-item" onclick="openFacilityPopup(
                 'Flexible Check-out',
                 '24 hours flexible checkout with SMS support.',
-                'D:/Janardhan/SVSGNT/Images/checkout.avif'
+                './Images/checkout.avif'
             )">
                 <div class="facility-icon"><i class="fas fa-clock"></i></div>
                 <div>
@@ -2078,7 +2196,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Administrative Office</h4>
-                            <p>Shop No.6,2nd Floor,Gupthas Mid Town,Guntur Road, Ongole<br>Andhra Pradesh - 523001, India</p>
+                            <p>Shop No.6, 2nd Floor,Gupthas Mid Town,Guntur Road, Ongole<br>Andhra Pradesh - 523001, India</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -2105,7 +2223,7 @@
                 </div>
                 <div class="contact-form">
                     <h3 style="color: #FF6B35; margin-bottom: 30px;">Send us a Message</h3>
-                    <form action="https://formsubmit.co/spencerongole@gmail.com" method="POST" />
+                    <form action="https://formsubmit.co/spencerongole@gmail.com" method="POST">
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" placeholder="Your Name" required>
@@ -2132,6 +2250,15 @@
             </div>
         </div>
     </section>
+    <!-- Audio Player -->
+        <div class="audio-player">
+            <h4 data-translate="audioTitle">Om Namah Shivaya</h4>
+            <audio controls>
+                <source src=".\Images\om-namah-shivaya.mp3" type="audio/mpeg">
+                <span data-translate="audioNotSupported">Your browser does not support the audio element.</span>
+            </audio>
+        </div>
+
     <script>
 function openFacilityPopup(title, text, image){
     document.getElementById("popupTitle").innerText = title;
